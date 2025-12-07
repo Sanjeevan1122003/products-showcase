@@ -58,7 +58,7 @@ function EnquiryForm({ productId, productName, onClose, onSubmit }) {
 
         try {
             setLoading(true);
-            await axios.post('https://info-hub-8c91.vercel.app/api/enquiries', {
+            await axios.post('https://products-showcase-8mvy.vercel.app/api/enquiries', {
                 product_id: productId,
                 ...formData
             });
