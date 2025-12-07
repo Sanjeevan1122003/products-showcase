@@ -20,7 +20,7 @@ function ProductList() {
     const fetchProducts = useCallback(async () => {
         try {
             setLoading(true);
-            const response = await axios.get('/api/products', {
+            const response = await axios.get('https://products-showcase-nine.vercel.app/api/products', {
                 params: {
                     search,
                     category: selectedCategory === 'All' ? '' : selectedCategory,
@@ -41,7 +41,7 @@ function ProductList() {
 
     const fetchCategories = useCallback(async () => {
         try {
-            const response = await axios.get('/api/products/categories');
+            const response = await axios.get('https://products-showcase-nine.vercel.app/api/products/categories');
             setCategories(['All', ...response.data]);
         } catch (err) {
             console.error('Error fetching categories:', err);
