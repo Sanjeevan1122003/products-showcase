@@ -8,7 +8,7 @@ router.get('/', async (req, res) => {
             SELECT e.*, p.name as product_name 
             FROM enquiries e 
             LEFT JOIN products p ON e.product_id = p.id 
-            ORDER BY e.created_at DESC
+            ORDER BY e.created_at ASC
         `);
         res.json(enquiries);
     } catch (error) {
