@@ -16,7 +16,7 @@ function AdminPanel() {
     const fetchEnquiries = async () => {
         try {
             setLoading(true);
-            const response = await axios.get('https://products-showcase-nine.vercel.app/api/enquiries');
+            const response = await axios.get('https://products-showcase-8mvy.vercel.app/api/enquiries');
             setEnquiries(response.data);
             setError('');
         } catch (err) {
@@ -32,7 +32,7 @@ function AdminPanel() {
             setUpdating(prev => ({ ...prev, [id]: true }));
             setUpdateMessage('');
 
-            await axios.put(`https://products-showcase-nine.vercel.app/api/enquiries/${id}/status`, {
+            await axios.put(`https://products-showcase-8mvy.vercel.app/api/enquiries/${id}/status`, {
                 status: newStatus
             });
 
