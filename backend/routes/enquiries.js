@@ -34,7 +34,7 @@ router.post('/', async (req, res) => {
         }
 
         if (product_id) {
-            const product = await db.get('SELECT id FROM products WHERE id = ?', [product_id]);
+            const product = await db.get('SELECT id FROM products WHERE id = $1', [product_id]);
             if (!product) {
                 return res.status(404).json({ error: 'Product not found' });
             }
@@ -42,7 +42,7 @@ router.post('/', async (req, res) => {
 
         const result = await db.run(
             `INSERT INTO enquiries (product_id, name, email, phone, message) 
-             VALUES (?, ?, ?, ?, ?)`,
+             VALUES ($1, $2, $3, $4, $5) RETURNING id`,
             [product_id || null, name, email, phone, message]
         );
 
@@ -61,20 +61,20 @@ router.put('/:id/status', async (req, res) => {
         const { id } = req.params;
         const { status } = req.body;
 
-        const validStatuses = ['Pending', 'Completed'];
-        if (!validStatuses.includes(status)) {
+        const validStatuses = ['pending', 'completed'];
+        if (!validStatuses.includes(status.toLowerCase())) {
             return res.status(400).json({
-                error: 'Invalid status. Must be "Pending" or "Completed"'
+                error: 'Invalid status. Must be "pending" or "completed"'
             });
         }
 
-        const enquiry = await db.get('SELECT id FROM enquiries WHERE id = ?', [id]);
+        const enquiry = await db.get('SELECT id FROM enquiries WHERE id = $1', [id]);
         if (!enquiry) {
             return res.status(404).json({ error: 'Enquiry not found' });
         }
 
         await db.run(
-            `UPDATE enquiries SET status = ?, created_at = CURRENT_TIMESTAMP WHERE id = ?`,
+            `UPDATE enquiries SET status = $1 WHERE id = $2`,
             [status, id]
         );
 
