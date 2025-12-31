@@ -39,7 +39,6 @@ function App() {
         <footer className="app-footer">
           <div className="footer-container">
             <p>© 2025 Product Showcase & Enquiry System</p>
-            <p>GVCC Solutions Company Assignment</p>
           </div>
         </footer>
       </div>
