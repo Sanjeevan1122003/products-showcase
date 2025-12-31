@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { AiFillProduct } from "react-icons/ai";
 import ProductList from './components/ProductList';
 import ProductDetails from './components/ProductDetails';
 import AdminPanel from './components/AdminPanel';
@@ -13,7 +14,7 @@ function App() {
           <nav className="navbar">
             <div className="nav-container">
               <Link to="/" className="nav-logo">
-                Product Showcase
+              <AiFillProduct /> Product Showcase
               </Link>
               <div className="nav-links">
                 <Link to="/" className="nav-link">
